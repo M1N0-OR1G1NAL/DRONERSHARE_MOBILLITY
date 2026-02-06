@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './FlightAccess.css';
 
 interface FlightAccessProps {
@@ -32,7 +32,7 @@ const FlightAccess: React.FC<FlightAccessProps> = ({ apiUrl = 'http://localhost:
   // Mock authentication token - in production, this should come from auth context/state
   const [authToken, setAuthToken] = useState<string | null>(localStorage.getItem('authToken'));
 
-  const loadDashboard = async () => {
+  const loadDashboard = useCallback(async () => {
     try {
       setLoading(true);
       const response = await fetch(`${apiUrl}/api/flight-access`, {
@@ -53,7 +53,7 @@ const FlightAccess: React.FC<FlightAccessProps> = ({ apiUrl = 'http://localhost:
     } finally {
       setLoading(false);
     }
-  };
+  }, [apiUrl, authToken]);
 
   useEffect(() => {
     if (authToken) {
@@ -61,8 +61,7 @@ const FlightAccess: React.FC<FlightAccessProps> = ({ apiUrl = 'http://localhost:
     } else {
       setLoading(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [authToken]);
+  }, [authToken, loadDashboard]);
 
   const handleElevateTier = async (targetTier: number) => {
     try {
