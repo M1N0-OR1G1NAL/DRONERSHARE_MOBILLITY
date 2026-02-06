@@ -32,14 +32,6 @@ const FlightAccess: React.FC<FlightAccessProps> = ({ apiUrl = 'http://localhost:
   // Mock authentication token - in production, this should come from auth context/state
   const [authToken, setAuthToken] = useState<string | null>(localStorage.getItem('authToken'));
 
-  useEffect(() => {
-    if (authToken) {
-      loadDashboard();
-    } else {
-      setLoading(false);
-    }
-  }, [authToken]);
-
   const loadDashboard = async () => {
     try {
       setLoading(true);
@@ -62,6 +54,15 @@ const FlightAccess: React.FC<FlightAccessProps> = ({ apiUrl = 'http://localhost:
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (authToken) {
+      loadDashboard();
+    } else {
+      setLoading(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [authToken]);
 
   const handleElevateTier = async (targetTier: number) => {
     try {
@@ -105,7 +106,7 @@ const FlightAccess: React.FC<FlightAccessProps> = ({ apiUrl = 'http://localhost:
         throw new Error(errorData.error || 'Failed to toggle service');
       }
 
-      const result = await response.json();
+      await response.json();
       await loadDashboard();
     } catch (err) {
       alert(err instanceof Error ? err.message : 'Failed to toggle service');
