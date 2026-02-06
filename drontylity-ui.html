@@ -388,11 +388,27 @@
     <script>
         // Custom map implementation (no external dependencies)
         const map = document.getElementById('map');
-        const mapRect = map.getBoundingClientRect();
+
+        // Helper function to convert pixel coordinates to geo coordinates
+        function convertToGeoCoordinates(x, y) {
+            const lat = (50.08 + (y - 50) / 100).toFixed(4);
+            const lng = (14.42 + (x - 50) / 100).toFixed(4);
+            return `${lat}, ${lng}`;
+        }
+
+        // Helper function to create a marker element
+        function createMarker(color, x, y) {
+            const marker = document.createElement('div');
+            marker.className = 'map-marker';
+            marker.innerHTML = `<div style="background: ${color}; width: 20px; height: 20px; border-radius: 50%; border: 3px solid white;"></div>`;
+            marker.style.left = x + '%';
+            marker.style.top = y + '%';
+            return marker;
+        }
 
         // Stanice v Praze (5 přednastavených stanic) - jako pixel coordinates
         const stations = [
-            { name: "Staromák", x: 50, y: 45, drones: 3 },
+            { name: "Staroměstská", x: 50, y: 45, drones: 3 },
             { name: "Hlavní nádraží", x: 55, y: 50, drones: 4 },
             { name: "Karlín", x: 65, y: 40, drones: 2 },
             { name: "Smíchov", x: 35, y: 60, drones: 3 },
@@ -477,28 +493,20 @@
                 startPoint = { x, y };
                 if (startMarker) startMarker.remove();
                 
-                startMarker = document.createElement('div');
-                startMarker.className = 'map-marker';
-                startMarker.innerHTML = '<div style="background: #4CAF50; width: 20px; height: 20px; border-radius: 50%; border: 3px solid white;"></div>';
-                startMarker.style.left = x + '%';
-                startMarker.style.top = y + '%';
+                startMarker = createMarker('#4CAF50', x, y);
                 map.appendChild(startMarker);
                 
-                document.getElementById('start-coords').value = `${(50.08 + (y-50)/100).toFixed(4)}, ${(14.42 + (x-50)/100).toFixed(4)}`;
+                document.getElementById('start-coords').value = convertToGeoCoordinates(x, y);
                 showNotification('Start nastaven', 'Nyní vyberte cílový bod');
             } else if (!endPoint) {
                 // Nastavit cíl
                 endPoint = { x, y };
                 if (endMarker) endMarker.remove();
                 
-                endMarker = document.createElement('div');
-                endMarker.className = 'map-marker';
-                endMarker.innerHTML = '<div style="background: #f44336; width: 20px; height: 20px; border-radius: 50%; border: 3px solid white;"></div>';
-                endMarker.style.left = x + '%';
-                endMarker.style.top = y + '%';
+                endMarker = createMarker('#f44336', x, y);
                 map.appendChild(endMarker);
                 
-                document.getElementById('end-coords').value = `${(50.08 + (y-50)/100).toFixed(4)}, ${(14.42 + (x-50)/100).toFixed(4)}`;
+                document.getElementById('end-coords').value = convertToGeoCoordinates(x, y);
                 
                 // Vykreslit trasu
                 drawRoute();
@@ -509,14 +517,10 @@
                 startPoint = { x, y };
                 if (startMarker) startMarker.remove();
                 
-                startMarker = document.createElement('div');
-                startMarker.className = 'map-marker';
-                startMarker.innerHTML = '<div style="background: #4CAF50; width: 20px; height: 20px; border-radius: 50%; border: 3px solid white;"></div>';
-                startMarker.style.left = x + '%';
-                startMarker.style.top = y + '%';
+                startMarker = createMarker('#4CAF50', x, y);
                 map.appendChild(startMarker);
                 
-                document.getElementById('start-coords').value = `${(50.08 + (y-50)/100).toFixed(4)}, ${(14.42 + (x-50)/100).toFixed(4)}`;
+                document.getElementById('start-coords').value = convertToGeoCoordinates(x, y);
                 showNotification('Start nastaven', 'Nyní vyberte cílový bod');
             }
         });
