@@ -159,7 +159,7 @@ Jakmile budeme mít funkční prototyp, budeme hledat dobrovolníky pro beta tes
 - Database: PostgreSQL + Redis
 - Real-time: WebSocket komunikace
 - AI/ML: TensorFlow pro navigační modely
-- Mapping: Vlastní implementace nad open-source daty
+- Mapping: Vlastní implementace nad otevřenými daty
 
 ---
 
