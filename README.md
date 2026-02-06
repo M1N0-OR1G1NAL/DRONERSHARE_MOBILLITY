@@ -82,6 +82,30 @@ DroneShare Mobility je komplexní systém pro správu flotily autonomních letec
 - Legislativní kontrola letových tras
 - Emergency stop/landing protocols
 
+### 👥 Systém přístupových úrovní (Flight Tier System)
+
+Platforma implementuje **4 fáze přihlášení** pro různé typy uživatelů:
+
+#### **Tier 0: Návštěvník** (Prospective Visitor)
+- 🌐 Prohlížení platformy a marketingového obsahu
+- 📋 Výchozí úroveň pro nové uživatele
+
+#### **Tier 1: Aktivní Předplatitel** (Active Subscriber)
+Registrovaní uživatelé s přístupem ke třem službám:
+- 🚕 **Automatizovaná taxi jízda** - Autonomní přeprava z bodu A do B
+- 🎮 **Půjčení dronu** - Osobní pilotování s různými tarify
+- 📦 **Transport balíků** - Logistika a přeprava zboží
+
+#### **Tier 2: Správce Systému** (System Overseer)
+- 🔧 Administrativní přístup k platformě
+- 👥 Správa uživatelů a oprávnění
+
+#### **Tier 3: Technická Obsluha** (Technical Crew)
+- 🛠️ Údržba a diagnostika dronové flotily
+- 🔍 Fleet monitoring a servis
+
+Více informací v dokumentaci: [Flight Tier System](/docs/FLIGHT_TIER_SYSTEM.md)
+
 ## 🏗️ Architektura
 
 ```
