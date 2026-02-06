@@ -160,7 +160,7 @@ Vyžaduje aktivované API:
 - Directions API
 - Geocoding API (volitelné)
 
-## Struktur komponent
+## Struktura komponent
 
 ```
 App (main router)
