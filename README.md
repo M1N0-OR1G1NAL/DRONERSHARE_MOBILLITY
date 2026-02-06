@@ -82,7 +82,7 @@ Věříme, že budoucnost dopravy neleží jen na silnicích, ale i ve vzduchu. 
 ### Krátkodobé (6-12 měsíců)
 - Vyvinout funkční MVP mobilní aplikace s rezervačním systémem
 - Implementovat základní backend pro správu flotily a tras
-- Otestovat integraci s komerčními dronvými platformami (DJI, Skydio)
+- Otestovat integraci s komerčními dronovými platformami (DJI, Skydio)
 - Získat pilotní licenci pro testování v kontrolovaném prostoru
 
 ### Střednědobé (1-2 roky)
@@ -111,7 +111,7 @@ Věříme, že budoucnost dopravy neleží jen na silnicích, ale i ve vzduchu. 
 ### Serverová logika (Backend)
 - Optimalizační algoritmy pro plánování letových tras
 - Správa energetické sítě a monitoring stavu flotily
-- API pro komunikaci s dronvými jednotkami
+- API pro komunikaci s dronovými jednotkami
 - Analytics a prediktivní modelování poptávky
 
 ### IoT vrstva (Drony)
