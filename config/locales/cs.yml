@@ -1,0 +1,7 @@
+cs:
+  navigation:
+    dashboard: "Hlavní panel"
+    flight_access: "Drontylity Přístup"
+    account_settings: "Nastavení účtu"
+    admin_panel: "Administrace"
+    logout: "Odhlásit se"

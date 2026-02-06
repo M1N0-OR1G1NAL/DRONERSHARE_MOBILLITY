@@ -1,0 +1,54 @@
+/ Account Navigation
+nav.account-navigation
+  ul
+    li
+      = link_to t('navigation.dashboard'), root_path
+    
+    li
+      = link_to t('navigation.flight_access'), flight_access_path, class: 'flight-access-link'
+    
+    li
+      = link_to t('navigation.account_settings'), edit_account_path
+    
+    - if current_account.super_admin?
+      li.admin-section
+        = link_to t('navigation.admin_panel'), admin_path
+    
+    li
+      = link_to t('navigation.logout'), destroy_account_session_path, method: :delete
+
+css:
+  .account-navigation {
+    background: #333;
+    padding: 10px 0;
+  }
+  
+  .account-navigation ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .account-navigation a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    border-radius: 4px;
+    transition: background 0.3s;
+  }
+  
+  .account-navigation a:hover {
+    background: #555;
+  }
+  
+  .account-navigation .flight-access-link {
+    background: #2196F3;
+  }
+  
+  .admin-section {
+    margin-left: auto;
+  }
