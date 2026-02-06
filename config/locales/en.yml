@@ -1,0 +1,7 @@
+en:
+  navigation:
+    dashboard: "Dashboard"
+    flight_access: "Drontylity Access"
+    account_settings: "Account Settings"
+    admin_panel: "Administration"
+    logout: "Logout"

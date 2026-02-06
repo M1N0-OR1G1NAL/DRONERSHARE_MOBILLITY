@@ -1,0 +1,69 @@
+en:
+  flight_access:
+    dashboard_title: "Drontylity Access"
+    current_tier: "Your Current Tier"
+    tier: "Tier"
+    tier_changed: "Access tier successfully changed"
+    tier_change_failed: "Failed to change access tier"
+    service_toggled: "Service successfully toggled"
+    service_toggle_failed: "Failed to toggle service"
+    available_after_subscription: "Available after subscription"
+    upgrade_to_subscriber: "Upgrade to Subscription"
+    account_info: "Account Information"
+    email: "Email"
+    name: "Name"
+    subscriber_since: "Subscriber since"
+    
+    visitor:
+      title: "Prospective Visitor"
+      description: "Browse our platform and learn more about Drontylity services. Upgrade to subscription to access services."
+    
+    subscriber:
+      title: "Registered User - Active Subscriber"
+      description: "You have access to all Drontylity transportation services. Activate the services you need."
+    
+    overseer:
+      title: "System Administrator"
+      description: "You have full access to platform and user management."
+      capabilities: "Your Permissions"
+      capability_1: "Manage user accounts"
+      capability_2: "Elevate and demote users"
+      capability_3: "Access system settings"
+      capability_4: "Monitor platform metrics"
+    
+    tech_crew:
+      title: "Technical Crew - Maintenance"
+      description: "You have access to diagnostic tools and maintenance protocols."
+      capabilities: "Your Permissions"
+      capability_1: "Drone fleet diagnostics"
+      capability_2: "Maintenance scheduling"
+      capability_3: "Access to technical logs"
+      capability_4: "Manage docking stations"
+    
+    services:
+      auto_taxi:
+        name: "Automated Taxi Ride from A to B"
+        description: "Autonomous drone transportation with AI navigation. Enter start and destination, the drone will transport you."
+      
+      pilot_rental:
+        name: "Personal Drone Rental with Self-Piloting"
+        description: "Rent a drone with self-piloting capability. Various tariff plans based on usage duration."
+      
+      cargo_logistics:
+        name: "Package Transport/Logistics from Point A to Point B"
+        description: "Automated package and cargo transportation between locations."
+    
+    status:
+      active: "Active"
+      inactive: "Inactive"
+    
+    actions:
+      activate: "Activate"
+      deactivate: "Deactivate"
+  
+  navigation:
+    dashboard: "Dashboard"
+    flight_access: "Drontylity Access"
+    account_settings: "Account Settings"
+    admin_panel: "Administration"
+    logout: "Logout"

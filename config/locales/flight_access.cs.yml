@@ -1,0 +1,69 @@
+cs:
+  flight_access:
+    dashboard_title: "Drontylity Přístup"
+    current_tier: "Vaše aktuální úroveň"
+    tier: "Úroveň"
+    tier_changed: "Úroveň přístupu byla úspěšně změněna"
+    tier_change_failed: "Změna úrovně přístupu se nezdařila"
+    service_toggled: "Služba byla úspěšně přepnuta"
+    service_toggle_failed: "Přepnutí služby se nezdařilo"
+    available_after_subscription: "Dostupné po předplatném"
+    upgrade_to_subscriber: "Přejít na předplatné"
+    account_info: "Informace o účtu"
+    email: "E-mail"
+    name: "Jméno"
+    subscriber_since: "Předplatitel od"
+    
+    visitor:
+      title: "Neregistrovaný uživatel"
+      description: "Procházejte naši platformu a zjistěte více o službách Drontylity. Pro přístup ke službám přejděte na předplatné."
+    
+    subscriber:
+      title: "Registrovaný uživatel - Aktivní předplatitel"
+      description: "Máte přístup ke všem dopravním službám Drontylity. Aktivujte služby, které potřebujete."
+    
+    overseer:
+      title: "Administrátor systému"
+      description: "Máte plný přístup ke správě platformy a uživatelů."
+      capabilities: "Vaše oprávnění"
+      capability_1: "Správa uživatelských účtů"
+      capability_2: "Povyšování a degradace uživatelů"
+      capability_3: "Přístup k systémovým nastavením"
+      capability_4: "Sledování platformových metrik"
+    
+    tech_crew:
+      title: "Technický personál - Údržba"
+      description: "Máte přístup k diagnostickým nástrojům a údržbovým protokolům."
+      capabilities: "Vaše oprávnění"
+      capability_1: "Diagnostika flotily dronů"
+      capability_2: "Plánování údržby"
+      capability_3: "Přístup k technickým logům"
+      capability_4: "Správa dokovacích stanic"
+    
+    services:
+      auto_taxi:
+        name: "Automatizovaná taxi jízda z A do B"
+        description: "Autonomní přeprava dronem s AI navigací. Zadejte start a cíl, dron vás dopraví."
+      
+      pilot_rental:
+        name: "Půjčení persona dronu vlastním pilotováním"
+        description: "Pronájem dronu s možností vlastního pilotování. Různé tarifní plány podle doby využití."
+      
+      cargo_logistics:
+        name: "Transport balíků/logistika z bodu A do bodu B"
+        description: "Automatizovaná přeprava balíků a nákladu mezi lokacemi."
+    
+    status:
+      active: "Aktivní"
+      inactive: "Neaktivní"
+    
+    actions:
+      activate: "Aktivovat"
+      deactivate: "Deaktivovat"
+  
+  navigation:
+    dashboard: "Hlavní panel"
+    flight_access: "Drontylity Přístup"
+    account_settings: "Nastavení účtu"
+    admin_panel: "Administrace"
+    logout: "Odhlásit se"
