@@ -1,0 +1,72 @@
+{
+  "flight_access": {
+    "dashboard": {
+      "title": "Flight Tier Dashboard",
+      "tier_0": {
+        "title": "Vítejte v Drontylity",
+        "description": "Jste Prospective Visitor - Prozkoumejte naší platformu!",
+        "features_title": "Co nabízíme:",
+        "feature_1": "Automatizované taxi drony - Rychlá přeprava z bodu A do B",
+        "feature_2": "Manuální pronájem - Pilotujte si drona sami",
+        "feature_3": "Nákladní přeprava - Logistika balíků vzduchem",
+        "upgrade_title": "Připraveni začít?",
+        "upgrade_description": "Upgradem na Active Subscriber získáte přístup ke všem našim službám!",
+        "upgrade_button": "Upgradeovat na Subscriber"
+      },
+      "tier_1": {
+        "title": "Ovládací Panel Služeb",
+        "description": "Vítejte, Active Subscriber! Spravujte své služby níže.",
+        "member_since": "Člen od:",
+        "service_route_automation": "Route Automation",
+        "service_route_automation_desc": "Automatizované taxi lety z bodu A do bodu B s AI navigací",
+        "service_manual_operation": "Manual Operation",
+        "service_manual_operation_desc": "Osobní pronájem dronu s vlastním pilotováním (vyžaduje licenci)",
+        "service_freight_handling": "Freight Handling",
+        "service_freight_handling_desc": "Nákladní přeprava balíků a logistika vzduchem",
+        "status_active": "Aktivní",
+        "status_inactive": "Neaktivní",
+        "button_enable": "Zapnout službu",
+        "button_disable": "Vypnout službu",
+        "button_processing": "Zpracovává se...",
+        "enabled_services_title": "Aktivní služby:"
+      },
+      "tier_2": {
+        "title": "Administrátorský Panel",
+        "description": "Vítejte, System Overseer! Máte přístup k platformovým nástrojům.",
+        "user_management_title": "Správa uživatelů",
+        "user_management_desc": "Zobrazení a správa uživatelských účtů",
+        "system_config_title": "Konfigurace systému",
+        "system_config_desc": "Nastavení platformy a služeb",
+        "platform_overview_title": "Platformový přehled",
+        "platform_overview_desc": "Analytics a metriky platformy",
+        "note": "Poznámka: Administrátoři nemají přístup ke službám pro předplatitele."
+      },
+      "tier_3": {
+        "title": "Panel Technické Údržby",
+        "description": "Vítejte, Technical Crew! Spravujte flotilu a diagnostiku.",
+        "diagnostics_title": "Diagnostické nástroje",
+        "diagnostics_desc": "Kontrola stavu dronů a systémů",
+        "maintenance_title": "Protokoly údržby",
+        "maintenance_desc": "Plánování a sledování údržby",
+        "management_title": "Technický management",
+        "management_desc": "Správa flotily a operací",
+        "note": "Poznámka: Technická crew nemá přístup ke službám pro předplatitele."
+      }
+    },
+    "tier_changed": "Tier úspěšně změněn",
+    "tier_change_failed": "Změna tier selhala",
+    "service_enabled": "Služba zapnuta",
+    "service_disabled": "Služba vypnuta",
+    "login_required": "Přihlášení vyžadováno",
+    "login_required_desc": "Pro přístup k Flight Tier systému se prosím přihlaste.",
+    "login_button": "Přihlásit se",
+    "loading": "Načítání dashboard...",
+    "error": "Chyba",
+    "try_again": "Zkusit znovu"
+  },
+  "shared": {
+    "header": {
+      "flight_tier": "Flight Tier"
+    }
+  }
+}

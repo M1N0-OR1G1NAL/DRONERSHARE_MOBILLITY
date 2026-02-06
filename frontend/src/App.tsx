@@ -7,8 +7,9 @@ import DroneManagement from './components/DroneManagement/DroneManagement';
 import Authorization from './components/Authorization/Authorization';
 import PhotoControl from './components/PhotoControl/PhotoControl';
 import Legislative from './components/Legislative/Legislative';
+import FlightAccess from './components/FlightAccess/FlightAccess';
 
-type Tab = 'route' | 'tracking' | 'payment' | 'management' | 'authorization' | 'photo' | 'legislative';
+type Tab = 'route' | 'tracking' | 'payment' | 'management' | 'authorization' | 'photo' | 'legislative' | 'flightaccess';
 
 function App() {
   const [activeTab, setActiveTab] = useState<Tab>('route');
@@ -29,6 +30,8 @@ function App() {
         return <PhotoControl />;
       case 'legislative':
         return <Legislative />;
+      case 'flightaccess':
+        return <FlightAccess />;
       default:
         return <RouteSelection />;
     }
@@ -85,6 +88,12 @@ function App() {
           onClick={() => setActiveTab('legislative')}
         >
           📋 Legislativa
+        </button>
+        <button
+          className={activeTab === 'flightaccess' ? 'active' : ''}
+          onClick={() => setActiveTab('flightaccess')}
+        >
+          🎯 Flight Tier
         </button>
       </nav>
 
