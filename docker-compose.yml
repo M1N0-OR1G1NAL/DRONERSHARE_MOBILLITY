@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  # MongoDB Database
+  mongodb:
+    image: mongo:5.0
+    container_name: dronershare-mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_DATABASE: dronershare
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - dronershare-network
+
+  # Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: dronershare-backend
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://mongodb:27017/dronershare
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+    networks:
+      - dronershare-network
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+
+  # Redis (for session management and caching)
+  redis:
+    image: redis:7-alpine
+    container_name: dronershare-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    networks:
+      - dronershare-network
+
+networks:
+  dronershare-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
+    driver: local
