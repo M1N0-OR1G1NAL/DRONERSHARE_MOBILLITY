@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drontylity - Uživatelské Rozhraní</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            display: flex;
+            min-height: 600px;
+        }
+
+        .sidebar {
+            width: 320px;
+            background: #f8f9fa;
+            padding: 30px;
+            border-right: 1px solid #dee2e6;
+        }
+
+        .service-levels {
+            margin-bottom: 30px;
+        }
+
+        .service-levels h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .service-level {
+            background: white;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .service-level:hover {
+            border-color: #667eea;
+            transform: translateX(5px);
+        }
+
+        .service-level.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: #667eea;
+        }
+
+        .service-level h4 {
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .service-level p {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .route-inputs {
+            margin-bottom: 30px;
+        }
+
+        .route-inputs h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+
+        .order-button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .order-button:hover {
+            transform: scale(1.05);
+        }
+
+        .order-button:active {
+            transform: scale(0.95);
+        }
+
+        #map {
+            flex: 1;
+            min-height: 600px;
+            background: #e8f4f8;
+            position: relative;
+            overflow: hidden;
+            cursor: crosshair;
+        }
+
+        #map-canvas {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, #e8f4f8 0%, #b8dce8 100%);
+        }
+
+        .map-marker {
+            position: absolute;
+            font-size: 24px;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            transition: transform 0.2s;
+            z-index: 10;
+        }
+
+        .map-marker:hover {
+            transform: translate(-50%, -50%) scale(1.2);
+        }
+
+        .map-popup {
+            position: absolute;
+            background: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            font-size: 0.85em;
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .map-popup::before {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 8px solid white;
+        }
+
+        .route-line {
+            position: absolute;
+            background: #667eea;
+            height: 4px;
+            transform-origin: 0 0;
+            pointer-events: none;
+            opacity: 0.7;
+            z-index: 5;
+        }
+
+        .route-line.active {
+            background: #4CAF50;
+            opacity: 0.8;
+        }
+
+        .map-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 49px, rgba(0,0,0,0.03) 49px, rgba(0,0,0,0.03) 50px),
+                repeating-linear-gradient(90deg, transparent, transparent 49px, rgba(0,0,0,0.03) 49px, rgba(0,0,0,0.03) 50px);
+            pointer-events: none;
+        }
+
+        .map-label {
+            position: absolute;
+            background: rgba(255,255,255,0.9);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+            color: #333;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            pointer-events: none;
+        }
+
+        .status-bar {
+            background: #f8f9fa;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-around;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .status-item {
+            text-align: center;
+        }
+
+        .status-item .value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .status-item .label {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transform: translateX(400px);
+            transition: transform 0.3s;
+            z-index: 1000;
+            max-width: 350px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .notification p {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .help-text {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #dee2e6;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚁 Drontylity Engine</h1>
+            <p>Průlomová platforma pro sdílení autonomních dronů</p>
+        </div>
+
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="service-levels">
+                    <h3>🎯 Úroveň služby</h3>
+                    <div class="service-level active" data-level="1">
+                        <h4>🔋 Level 1 - Základní přeprava</h4>
+                        <p>Ze stanice k cíli</p>
+                    </div>
+                    <div class="service-level" data-level="2">
+                        <h4>📍 Level 2 - Osobní přílet</h4>
+                        <p>Dron přiletí k vaší pozici</p>
+                    </div>
+                    <div class="service-level" data-level="3">
+                        <h4>🚁 Level 3 - Autonomní sdílení</h4>
+                        <p>Pronájem dronu na libovolnou dobu</p>
+                    </div>
+                </div>
+
+                <div class="help-text">
+                    💡 <strong>Tip:</strong> Klikněte na mapu pro výběr startu (první klik) a cíle (druhý klik)
+                </div>
+
+                <div class="route-inputs">
+                    <h3>📍 Souřadnice trasy</h3>
+                    <div class="input-group">
+                        <label>Start (lat, lng):</label>
+                        <input type="text" id="start-coords" placeholder="50.0875, 14.4213" readonly>
+                    </div>
+                    <div class="input-group">
+                        <label>Cíl (lat, lng):</label>
+                        <input type="text" id="end-coords" placeholder="Klikněte na mapu" readonly>
+                    </div>
+                </div>
+
+                <button class="order-button" id="order-btn">
+                    🚁 Objednat Let
+                </button>
+            </div>
+
+            <div id="map">
+                <div class="map-grid"></div>
+                <div class="map-label" style="top: 20px; left: 20px;">📍 Praha, Česká republika</div>
+            </div>
+        </div>
+
+        <div class="status-bar">
+            <div class="status-item">
+                <div class="value">🚁 <span id="available-drones">15</span></div>
+                <div class="label">Dostupné drony</div>
+            </div>
+            <div class="status-item">
+                <div class="value">⚡ <span id="energy-status">100%</span></div>
+                <div class="label">Obnovitelná energie</div>
+            </div>
+            <div class="status-item">
+                <div class="value">✅ <span id="service-status">Online</span></div>
+                <div class="label">Stav služby</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="notification" id="notification">
+        <h4 id="notif-title">Notifikace</h4>
+        <p id="notif-message">Zpráva</p>
+    </div>
+
+    <script>
+        // Custom map implementation (no external dependencies)
+        const map = document.getElementById('map');
+        const mapRect = map.getBoundingClientRect();
+
+        // Stanice v Praze (5 přednastavených stanic) - jako pixel coordinates
+        const stations = [
+            { name: "Staromák", x: 50, y: 45, drones: 3 },
+            { name: "Hlavní nádraží", x: 55, y: 50, drones: 4 },
+            { name: "Karlín", x: 65, y: 40, drones: 2 },
+            { name: "Smíchov", x: 35, y: 60, drones: 3 },
+            { name: "Žižkov", x: 70, y: 45, drones: 3 }
+        ];
+
+        // Aktivní drony ve vzduchu
+        const activeDrones = [
+            { x: 45, y: 55 },
+            { x: 60, y: 48 },
+            { x: 40, y: 50 }
+        ];
+
+        // Vytvoření značek stanic
+        stations.forEach(station => {
+            const marker = document.createElement('div');
+            marker.className = 'map-marker';
+            marker.innerHTML = '🔋';
+            marker.style.left = station.x + '%';
+            marker.style.top = station.y + '%';
+            marker.title = `${station.name} - ${station.drones} dronů`;
+            
+            // Popup při najetí
+            marker.addEventListener('mouseenter', function(e) {
+                const popup = document.createElement('div');
+                popup.className = 'map-popup';
+                popup.innerHTML = `<strong>${station.name}</strong><br>Dostupné drony: ${station.drones}`;
+                popup.style.left = station.x + '%';
+                popup.style.top = (station.y - 8) + '%';
+                popup.style.transform = 'translate(-50%, -100%)';
+                popup.id = 'temp-popup';
+                map.appendChild(popup);
+            });
+            
+            marker.addEventListener('mouseleave', function() {
+                const popup = document.getElementById('temp-popup');
+                if (popup) popup.remove();
+            });
+            
+            map.appendChild(marker);
+        });
+
+        // Vytvoření značek aktivních dronů
+        activeDrones.forEach((drone, index) => {
+            const marker = document.createElement('div');
+            marker.className = 'map-marker';
+            marker.innerHTML = '🚁';
+            marker.style.left = drone.x + '%';
+            marker.style.top = drone.y + '%';
+            marker.style.fontSize = '20px';
+            marker.title = 'Dron v letu';
+            map.appendChild(marker);
+        });
+
+        // Proměnné pro trasu
+        let startPoint = null;
+        let endPoint = null;
+        let startMarker = null;
+        let endMarker = null;
+        let routeLine = null;
+        let selectedLevel = 1;
+        let flyingDrone = null;
+
+        // Výběr úrovně služby
+        document.querySelectorAll('.service-level').forEach(level => {
+            level.addEventListener('click', function() {
+                document.querySelectorAll('.service-level').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                selectedLevel = parseInt(this.dataset.level);
+                showNotification('Úroveň služby změněna', `Vybrali jste Level ${selectedLevel}`);
+            });
+        });
+
+        // Kliknutí na mapu pro výběr trasy
+        map.addEventListener('click', function(e) {
+            const rect = map.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+            if (!startPoint) {
+                // Nastavit start
+                startPoint = { x, y };
+                if (startMarker) startMarker.remove();
+                
+                startMarker = document.createElement('div');
+                startMarker.className = 'map-marker';
+                startMarker.innerHTML = '<div style="background: #4CAF50; width: 20px; height: 20px; border-radius: 50%; border: 3px solid white;"></div>';
+                startMarker.style.left = x + '%';
+                startMarker.style.top = y + '%';
+                map.appendChild(startMarker);
+                
+                document.getElementById('start-coords').value = `${(50.08 + (y-50)/100).toFixed(4)}, ${(14.42 + (x-50)/100).toFixed(4)}`;
+                showNotification('Start nastaven', 'Nyní vyberte cílový bod');
+            } else if (!endPoint) {
+                // Nastavit cíl
+                endPoint = { x, y };
+                if (endMarker) endMarker.remove();
+                
+                endMarker = document.createElement('div');
+                endMarker.className = 'map-marker';
+                endMarker.innerHTML = '<div style="background: #f44336; width: 20px; height: 20px; border-radius: 50%; border: 3px solid white;"></div>';
+                endMarker.style.left = x + '%';
+                endMarker.style.top = y + '%';
+                map.appendChild(endMarker);
+                
+                document.getElementById('end-coords').value = `${(50.08 + (y-50)/100).toFixed(4)}, ${(14.42 + (x-50)/100).toFixed(4)}`;
+                
+                // Vykreslit trasu
+                drawRoute();
+                showNotification('Trasa naplánována', 'Klikněte na "Objednat Let" pro start');
+            } else {
+                // Reset a začít znovu
+                resetRoute();
+                startPoint = { x, y };
+                if (startMarker) startMarker.remove();
+                
+                startMarker = document.createElement('div');
+                startMarker.className = 'map-marker';
+                startMarker.innerHTML = '<div style="background: #4CAF50; width: 20px; height: 20px; border-radius: 50%; border: 3px solid white;"></div>';
+                startMarker.style.left = x + '%';
+                startMarker.style.top = y + '%';
+                map.appendChild(startMarker);
+                
+                document.getElementById('start-coords').value = `${(50.08 + (y-50)/100).toFixed(4)}, ${(14.42 + (x-50)/100).toFixed(4)}`;
+                showNotification('Start nastaven', 'Nyní vyberte cílový bod');
+            }
+        });
+
+        // Vykreslení trasy
+        function drawRoute() {
+            if (routeLine) routeLine.remove();
+            
+            routeLine = document.createElement('div');
+            routeLine.className = 'route-line';
+            
+            const dx = endPoint.x - startPoint.x;
+            const dy = endPoint.y - startPoint.y;
+            const length = Math.sqrt(dx * dx + dy * dy);
+            const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+            
+            routeLine.style.left = startPoint.x + '%';
+            routeLine.style.top = startPoint.y + '%';
+            routeLine.style.width = length + '%';
+            routeLine.style.transform = `rotate(${angle}deg)`;
+            
+            map.appendChild(routeLine);
+        }
+
+        // Reset trasy
+        function resetRoute() {
+            startPoint = null;
+            endPoint = null;
+            if (startMarker) startMarker.remove();
+            if (endMarker) endMarker.remove();
+            if (routeLine) routeLine.remove();
+            if (flyingDrone) flyingDrone.remove();
+            startMarker = null;
+            endMarker = null;
+            routeLine = null;
+            flyingDrone = null;
+            document.getElementById('start-coords').value = '';
+            document.getElementById('end-coords').value = '';
+        }
+
+        // Objednání letu
+        document.getElementById('order-btn').addEventListener('click', function() {
+            if (!startPoint || !endPoint) {
+                showNotification('Chyba', 'Nejprve vyberte start a cíl na mapě');
+                return;
+            }
+
+            showNotification('Let objednán', 'Dron se připravuje k odletu...');
+            
+            // Simulace letu
+            setTimeout(() => {
+                simulateFlight();
+            }, 2000);
+        });
+
+        // Simulace letu dronu
+        function simulateFlight() {
+            showNotification('Dron v letu', 'Sledujte průběh na mapě');
+            
+            // Změnit čáru na zelenou (aktivní let)
+            if (routeLine) {
+                routeLine.classList.add('active');
+            }
+
+            // Vytvoření dronu na startu
+            if (flyingDrone) flyingDrone.remove();
+            flyingDrone = document.createElement('div');
+            flyingDrone.className = 'map-marker';
+            flyingDrone.innerHTML = '🚁';
+            flyingDrone.style.left = startPoint.x + '%';
+            flyingDrone.style.top = startPoint.y + '%';
+            flyingDrone.style.fontSize = '28px';
+            flyingDrone.style.zIndex = '50';
+            map.appendChild(flyingDrone);
+
+            // Animace letu
+            const steps = 100;
+            const dx = (endPoint.x - startPoint.x) / steps;
+            const dy = (endPoint.y - startPoint.y) / steps;
+            let currentStep = 0;
+
+            const flyInterval = setInterval(() => {
+                currentStep++;
+                const newX = startPoint.x + (dx * currentStep);
+                const newY = startPoint.y + (dy * currentStep);
+                
+                flyingDrone.style.left = newX + '%';
+                flyingDrone.style.top = newY + '%';
+
+                if (currentStep >= steps) {
+                    clearInterval(flyInterval);
+                    showNotification('Let dokončen', 'Dron úspěšně dorazil do cíle!');
+                    
+                    // Po 3 sekundách resetovat
+                    setTimeout(() => {
+                        resetRoute();
+                    }, 3000);
+                }
+            }, 50);
+        }
+
+        // Zobrazení notifikace
+        function showNotification(title, message) {
+            const notif = document.getElementById('notification');
+            document.getElementById('notif-title').textContent = title;
+            document.getElementById('notif-message').textContent = message;
+            notif.classList.add('show');
+
+            setTimeout(() => {
+                notif.classList.remove('show');
+            }, 3000);
+        }
+
+        // Inicializační notifikace
+        setTimeout(() => {
+            showNotification('Vítejte v Drontylity', 'Vyberte úroveň služby a naplánujte trasu');
+        }, 1000);
+    </script>
+</body>
+</html>
