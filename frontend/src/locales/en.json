@@ -1,0 +1,72 @@
+{
+  "flight_access": {
+    "dashboard": {
+      "title": "Flight Tier Dashboard",
+      "tier_0": {
+        "title": "Welcome to Drontylity",
+        "description": "You are a Prospective Visitor - Explore our platform!",
+        "features_title": "What we offer:",
+        "feature_1": "Automated taxi drones - Fast transport from point A to B",
+        "feature_2": "Manual rental - Pilot the drone yourself",
+        "feature_3": "Freight transport - Aerial package logistics",
+        "upgrade_title": "Ready to start?",
+        "upgrade_description": "Upgrade to Active Subscriber to gain access to all our services!",
+        "upgrade_button": "Upgrade to Subscriber"
+      },
+      "tier_1": {
+        "title": "Service Control Panel",
+        "description": "Welcome, Active Subscriber! Manage your services below.",
+        "member_since": "Member since:",
+        "service_route_automation": "Route Automation",
+        "service_route_automation_desc": "Automated taxi flights from point A to point B with AI navigation",
+        "service_manual_operation": "Manual Operation",
+        "service_manual_operation_desc": "Personal drone rental with self-piloting (requires license)",
+        "service_freight_handling": "Freight Handling",
+        "service_freight_handling_desc": "Package transport and aerial logistics",
+        "status_active": "Active",
+        "status_inactive": "Inactive",
+        "button_enable": "Enable service",
+        "button_disable": "Disable service",
+        "button_processing": "Processing...",
+        "enabled_services_title": "Active services:"
+      },
+      "tier_2": {
+        "title": "Administrator Panel",
+        "description": "Welcome, System Overseer! You have access to platform tools.",
+        "user_management_title": "User Management",
+        "user_management_desc": "View and manage user accounts",
+        "system_config_title": "System Configuration",
+        "system_config_desc": "Platform and service settings",
+        "platform_overview_title": "Platform Overview",
+        "platform_overview_desc": "Platform analytics and metrics",
+        "note": "Note: Administrators do not have access to subscriber services."
+      },
+      "tier_3": {
+        "title": "Technical Maintenance Panel",
+        "description": "Welcome, Technical Crew! Manage fleet and diagnostics.",
+        "diagnostics_title": "Diagnostic Tools",
+        "diagnostics_desc": "Check drone and system status",
+        "maintenance_title": "Maintenance Protocols",
+        "maintenance_desc": "Maintenance planning and tracking",
+        "management_title": "Technical Management",
+        "management_desc": "Fleet and operations management",
+        "note": "Note: Technical crew does not have access to subscriber services."
+      }
+    },
+    "tier_changed": "Tier successfully changed",
+    "tier_change_failed": "Tier change failed",
+    "service_enabled": "Service enabled",
+    "service_disabled": "Service disabled",
+    "login_required": "Login Required",
+    "login_required_desc": "Please log in to access the Flight Tier system.",
+    "login_button": "Log In",
+    "loading": "Loading dashboard...",
+    "error": "Error",
+    "try_again": "Try Again"
+  },
+  "shared": {
+    "header": {
+      "flight_tier": "Flight Tier"
+    }
+  }
+}
