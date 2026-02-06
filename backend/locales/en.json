@@ -1,0 +1,55 @@
+{
+  "flightAccess": {
+    "title": "Drontylity Access",
+    "tiers": {
+      "0": {
+        "name": "Prospective Visitor",
+        "description": "Browse our platform and discover what we offer"
+      },
+      "1": {
+        "name": "Active Subscriber",
+        "description": "Access complete autonomous drone mobility services"
+      },
+      "2": {
+        "name": "System Overseer",
+        "description": "Administrative access to the platform"
+      },
+      "3": {
+        "name": "Technical Crew",
+        "description": "Maintenance and diagnostics of the drone fleet"
+      }
+    },
+    "services": {
+      "autoTaxi": {
+        "name": "Automated Taxi Ride",
+        "description": "Autonomous transport from point A to point B"
+      },
+      "pilotRental": {
+        "name": "Drone Rental",
+        "description": "Personal drone piloting with various rates"
+      },
+      "cargoLogistics": {
+        "name": "Package Transport",
+        "description": "Logistics and cargo transportation"
+      }
+    },
+    "actions": {
+      "upgradeToSubscriber": "Upgrade to Subscriber",
+      "activateService": "Activate",
+      "deactivateService": "Deactivate",
+      "viewDetails": "View Details"
+    },
+    "messages": {
+      "welcomeProspect": "Welcome! Register to start using our services.",
+      "welcomeSubscriber": "Welcome back! Your active services:",
+      "welcomeOverseer": "Administrator Panel",
+      "welcomeTechCrew": "Technical Panel - Fleet Maintenance",
+      "tierElevated": "Access level successfully changed",
+      "serviceToggled": "Service updated",
+      "error": "An error occurred"
+    }
+  },
+  "navigation": {
+    "flightAccess": "Drontylity Access"
+  }
+}
