@@ -1,0 +1,55 @@
+{
+  "flightAccess": {
+    "title": "Drontylity Přístup",
+    "tiers": {
+      "0": {
+        "name": "Návštěvník",
+        "description": "Prohlížejte si naši platformu a objevte, co nabízíme"
+      },
+      "1": {
+        "name": "Aktivní Předplatitel",
+        "description": "Využívejte kompletní služby autonomní dronové mobility"
+      },
+      "2": {
+        "name": "Správce Systému",
+        "description": "Administrativní přístup k platformě"
+      },
+      "3": {
+        "name": "Technická Obsluha",
+        "description": "Údržba a diagnostika dronové flotily"
+      }
+    },
+    "services": {
+      "autoTaxi": {
+        "name": "Automatizovaná Taxi Jízda",
+        "description": "Autonomní přeprava z bodu A do bodu B"
+      },
+      "pilotRental": {
+        "name": "Půjčení Dronu",
+        "description": "Osobní pilotování dronu s různými tarify"
+      },
+      "cargoLogistics": {
+        "name": "Transport Balíků",
+        "description": "Logistika a přeprava zboží"
+      }
+    },
+    "actions": {
+      "upgradeToSubscriber": "Přejít na Předplatitele",
+      "activateService": "Aktivovat",
+      "deactivateService": "Deaktivovat",
+      "viewDetails": "Zobrazit detaily"
+    },
+    "messages": {
+      "welcomeProspect": "Vítejte! Zaregistrujte se a začněte používat naše služby.",
+      "welcomeSubscriber": "Vítejte zpět! Vaše aktivní služby:",
+      "welcomeOverseer": "Administrátorský panel",
+      "welcomeTechCrew": "Technický panel - Údržba flotily",
+      "tierElevated": "Úroveň přístupu byla úspěšně změněna",
+      "serviceToggled": "Služba byla aktualizována",
+      "error": "Došlo k chybě"
+    }
+  },
+  "navigation": {
+    "flightAccess": "Drontylity Přístup"
+  }
+}

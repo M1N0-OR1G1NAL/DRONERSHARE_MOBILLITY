@@ -1,3 +1,14 @@
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const User = require('../models/User');
+
+// Register new user (starts as Tier 0 - Prospective Visitor)
+const register = async (req, res) => {
+  try {
+    const { email, password, firstName, lastName, phone } = req.body;
+
+    // Check if user already exists
+    const existingUser = await User.findOne({ email });
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -24,6 +35,9 @@ exports.register = async (req, res) => {
     // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    // Create new user (defaults to Tier 0)
+    const user = new User({
+      email,
     // Create new user (starts as Tier 0 - Prospective Visitor)
     const user = new User({
       email: email.toLowerCase(),
@@ -31,6 +45,12 @@ exports.register = async (req, res) => {
       firstName,
       lastName,
       phone,
+      platformTier: 0, // Start as Prospective Visitor
+      transportPermissions: {
+        routeAutomation: false,
+        manualOperation: false,
+        freightHandling: false
+      }
       platformTier: 0 // Start as Prospective Visitor
     });
 
@@ -39,6 +59,7 @@ exports.register = async (req, res) => {
     // Generate JWT token
     const token = jwt.sign(
       { userId: user._id },
+      process.env.JWT_SECRET || 'dev-secret-key',
       process.env.JWT_SECRET || 'your-secret-key',
       { expiresIn: '7d' }
     );
@@ -51,6 +72,30 @@ exports.register = async (req, res) => {
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
+        platformTier: user.platformTier,
+        tierDescription: user.getTierDescription()
+      },
+      token
+    });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+// Login user
+const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // Find user
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
+
+    // Check password
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
         tier: user.platformTier,
         tierDescription: user.tierDescription()
       }
@@ -82,6 +127,7 @@ exports.login = async (req, res) => {
 
     // Check if user is active
     if (!user.isActive) {
+      return res.status(403).json({ error: 'Account is disabled' });
       return res.status(403).json({ error: 'Account is deactivated' });
     }
 
@@ -94,6 +140,7 @@ exports.login = async (req, res) => {
     // Generate JWT token
     const token = jwt.sign(
       { userId: user._id },
+      process.env.JWT_SECRET || 'dev-secret-key',
       process.env.JWT_SECRET || 'your-secret-key',
       { expiresIn: '7d' }
     );
@@ -106,6 +153,58 @@ exports.login = async (req, res) => {
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
+        platformTier: user.platformTier,
+        tierDescription: user.getTierDescription(),
+        subscriberServices: user.getSubscriberServices()
+      },
+      token
+    });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+// Get current user profile
+const getProfile = async (req, res) => {
+  try {
+    const user = req.user;
+
+    res.json({
+      user: {
+        id: user._id,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        phone: user.phone,
+        platformTier: user.platformTier,
+        tierDescription: user.getTierDescription(),
+        transportPermissions: user.transportPermissions,
+        subscriberServices: user.getSubscriberServices(),
+        onboardingCompletedAt: user.onboardingCompletedAt,
+        userLevel: user.userLevel,
+        createdAt: user.createdAt
+      }
+    });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+// Logout (client-side token removal, but we log the event)
+const logout = async (req, res) => {
+  try {
+    res.json({ message: 'Logout successful' });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+module.exports = {
+  register,
+  login,
+  getProfile,
+  logout
+};
         tier: user.platformTier,
         tierDescription: user.tierDescription(),
         services: user.subscribedMember() ? {
