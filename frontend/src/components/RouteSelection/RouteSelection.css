@@ -1,0 +1,71 @@
+.route-selection {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.route-selection h2 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.instructions {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f0f8ff;
+  border-left: 4px solid #1976d2;
+}
+
+.instructions p {
+  margin: 0;
+  color: #555;
+}
+
+.route-info {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.point-info, .route-stats {
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.route-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.route-actions button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.route-actions button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.route-actions button:not(:disabled) {
+  background-color: #e0e0e0;
+}
+
+.route-actions button:not(:disabled):hover {
+  background-color: #d0d0d0;
+}
+
+.route-actions .primary-button {
+  background-color: #1976d2;
+  color: white;
+}
+
+.route-actions .primary-button:hover {
+  background-color: #1565c0;
+}
