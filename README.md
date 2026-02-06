@@ -1,0 +1,2 @@
+# DRONERSHARE_MOBILLITY
+Spojujeme pokročilé drony s umělou inteligencí, obnovitelnou energií a flexibilním sdílením pro vytvoření ekologické dopravní sítě nové generace.  🌟  Drontylity Engine systém pro správu flotily autonomních leteckých zařízení. Aplikace umožňuje uživatelům přepravu dronem z bodu A do bodu B v reálném čase a využít různé úrovně služeb podle potřeb.
