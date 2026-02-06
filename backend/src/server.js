@@ -31,9 +31,13 @@ const connectDB = async () => {
 // Routes
 const droneRoutes = require('./routes/drones');
 const reservationRoutes = require('./routes/reservations');
+const authRoutes = require('./routes/auth');
+const flightAccessRoutes = require('./routes/flightAccess');
 
 app.use('/api/drones', droneRoutes);
 app.use('/api/reservations', reservationRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/flight-access', flightAccessRoutes);
 
 // Health check endpoint
 app.get('/health', (req, res) => {
@@ -52,6 +56,8 @@ app.get('/', (req, res) => {
     version: '1.0.0',
     description: 'Backend API for autonomous drone sharing platform',
     endpoints: {
+      auth: '/api/auth',
+      flightAccess: '/api/flight-access',
       drones: '/api/drones',
       reservations: '/api/reservations',
       health: '/health'
