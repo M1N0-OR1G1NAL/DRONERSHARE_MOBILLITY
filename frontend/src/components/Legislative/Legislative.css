@@ -1,0 +1,262 @@
+.legislative {
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.legislative h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.info-section {
+  background-color: #e3f2fd;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  border-left: 4px solid #1976d2;
+}
+
+.info-section h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.info-section p {
+  margin: 10px 0 0;
+  color: #555;
+  line-height: 1.6;
+}
+
+.flight-zones {
+  margin-bottom: 30px;
+}
+
+.flight-zones h3 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.zones-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 15px;
+}
+
+.zone-card {
+  padding: 20px;
+  border-radius: 8px;
+  border-left: 6px solid;
+}
+
+.zone-card.allowed {
+  background-color: #e8f5e9;
+  border-color: #4caf50;
+}
+
+.zone-card.restricted {
+  background-color: #fff3e0;
+  border-color: #ff9800;
+}
+
+.zone-card.prohibited {
+  background-color: #ffebee;
+  border-color: #f44336;
+}
+
+.zone-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.zone-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.zone-card.allowed .zone-indicator {
+  background-color: #4caf50;
+}
+
+.zone-card.restricted .zone-indicator {
+  background-color: #ff9800;
+}
+
+.zone-card.prohibited .zone-indicator {
+  background-color: #f44336;
+}
+
+.zone-card h4 {
+  margin: 0;
+  color: #333;
+}
+
+.zone-card p {
+  margin: 0;
+  color: #555;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.compliance-check {
+  background-color: #f9f9f9;
+  padding: 30px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.compliance-check h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.check-form {
+  max-width: 600px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #555;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.checkbox-group {
+  margin-bottom: 15px;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  color: #555;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.check-button {
+  width: 100%;
+  padding: 15px;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.check-button:hover {
+  background-color: #1565c0;
+}
+
+.check-result {
+  margin-top: 30px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.result-header {
+  padding: 20px;
+  color: white;
+}
+
+.result-header.compliant {
+  background-color: #4caf50;
+}
+
+.result-header.non-compliant {
+  background-color: #f44336;
+}
+
+.result-header h4 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.issues-section,
+.warnings-section {
+  padding: 20px;
+  background-color: white;
+}
+
+.issues-section h5,
+.warnings-section h5 {
+  margin-top: 0;
+  color: #333;
+}
+
+.issues-section ul,
+.warnings-section ul {
+  margin: 10px 0;
+  padding-left: 25px;
+}
+
+.issue-item {
+  color: #c62828;
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.warning-item {
+  color: #e65100;
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.compliance-message {
+  padding: 20px;
+  background-color: #e8f5e9;
+  text-align: center;
+}
+
+.compliance-message p {
+  margin: 0;
+  color: #2e7d32;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.requirements-list {
+  background-color: #f9f9f9;
+  padding: 25px;
+  border-radius: 8px;
+}
+
+.requirements-list h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.requirements-list ul {
+  margin: 15px 0;
+  padding-left: 25px;
+}
+
+.requirements-list li {
+  margin: 12px 0;
+  color: #555;
+  line-height: 1.6;
+}

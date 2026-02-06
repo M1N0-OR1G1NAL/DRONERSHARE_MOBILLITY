@@ -1,0 +1,122 @@
+.payment-reservation {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.payment-reservation h2 {
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.reservation-section,
+.payment-section {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.reservation-section h3,
+.payment-section h3 {
+  margin-top: 0;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 15px;
+}
+
+.price-display {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #e3f2fd;
+  border-radius: 6px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.payment-methods {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.payment-methods label {
+  flex: 1;
+  padding: 15px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.payment-methods label:hover {
+  border-color: #1976d2;
+}
+
+.payment-methods label.selected {
+  border-color: #1976d2;
+  background-color: #e3f2fd;
+}
+
+.payment-methods input[type="radio"] {
+  width: auto;
+}
+
+.card-details {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.paypal-info {
+  padding: 20px;
+  background-color: #fff3cd;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 15px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #45a049;
+}
