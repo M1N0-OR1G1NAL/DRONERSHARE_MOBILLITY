@@ -1,0 +1,44 @@
+# Gemfile for Drontylity LocomotiveCMS Engine - Flight Tier System
+# 
+# Add these gems to your main Gemfile if not already present
+
+source 'https://rubygems.org'
+
+# Core Rails and MongoDB
+gem 'rails', '~> 7.1'
+gem 'mongoid', '~> 8.0'
+
+# Authentication
+gem 'devise', '~> 4.9'
+
+# Slim templates
+gem 'slim-rails', '~> 3.6'
+
+# Internationalization
+gem 'rails-i18n', '~> 7.0'
+
+group :development, :test do
+  # Testing framework
+  gem 'rspec-rails', '~> 6.0'
+  
+  # Factory for test data
+  gem 'factory_bot_rails', '~> 6.2'
+  
+  # Code coverage
+  gem 'simplecov', require: false
+  
+  # Debugging
+  gem 'pry-rails'
+  gem 'pry-byebug'
+end
+
+group :test do
+  # Database cleaner for tests
+  gem 'database_cleaner-mongoid', '~> 2.0'
+  
+  # Test helpers
+  gem 'shoulda-matchers', '~> 5.0'
+  
+  # Fake data generation
+  gem 'faker', '~> 3.0'
+end
