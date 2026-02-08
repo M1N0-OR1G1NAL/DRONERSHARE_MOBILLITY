@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './FlightAccess.css';
 
 interface FlightAccessProps {
@@ -32,15 +32,7 @@ const FlightAccess: React.FC<FlightAccessProps> = ({ apiUrl = 'http://localhost:
   // Mock authentication token - in production, this should come from auth context/state
   const [authToken, setAuthToken] = useState<string | null>(localStorage.getItem('authToken'));
 
-  useEffect(() => {
-    if (authToken) {
-      loadDashboard();
-    } else {
-      setLoading(false);
-    }
-  }, [authToken]);
-
-  const loadDashboard = async () => {
+  const loadDashboard = useCallback(async () => {
     try {
       setLoading(true);
       const response = await fetch(`${apiUrl}/api/flight-access`, {
@@ -61,7 +53,15 @@ const FlightAccess: React.FC<FlightAccessProps> = ({ apiUrl = 'http://localhost:
     } finally {
       setLoading(false);
     }
-  };
+  }, [apiUrl, authToken]);
+
+  useEffect(() => {
+    if (authToken) {
+      loadDashboard();
+    } else {
+      setLoading(false);
+    }
+  }, [authToken, loadDashboard]);
 
   const handleElevateTier = async (targetTier: number) => {
     try {
@@ -105,7 +105,7 @@ const FlightAccess: React.FC<FlightAccessProps> = ({ apiUrl = 'http://localhost:
         throw new Error(errorData.error || 'Failed to toggle service');
       }
 
-      const result = await response.json();
+      await response.json();
       await loadDashboard();
     } catch (err) {
       alert(err instanceof Error ? err.message : 'Failed to toggle service');
